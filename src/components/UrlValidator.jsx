@@ -45,14 +45,14 @@ function URLValidator() {
 
     return (
         <div>
-        <h1>URL Validator</h1>
+        {/* <h1>URL Validator</h1> */}
         <input id='input_text'
             type="text"
             placeholder="레시피 링크를 입력해 주세요"
             value={url}
             onChange={handleInputChange}
         />
-        <button onClick={validateURL}>Validate URL</button>
+        <button onClick={validateURL}>URL Check</button>
 
         {isValid ? (
             <p style={{ color: 'green' }}>Valid URL</p>

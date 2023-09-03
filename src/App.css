@@ -58,6 +58,7 @@
   font-size: 14px;
   font-weight: 600;
   color: #FFFFFF;
+  padding-top: 2vh;
 }
 
 .service_name_section {
@@ -79,6 +80,7 @@
   font-size: 14px;
   font-weight: 600;
   color: #8E8E93;
+  padding: 25px 22px 22px 22px;
 }
 
 .social_login_btn {

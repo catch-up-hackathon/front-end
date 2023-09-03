@@ -95,7 +95,7 @@ function App() {
             {/* 서비스명 영역 */}
             <div className='service_name_section'>
               {/* <img className='' src='' alt='service_name_img'></img> */}
-              <img id='service_name_img' src='/image/intro_name.svg' alt='service_name_img'></img>
+          <img id='service_name_img' src='/image/intro_name.svg' alt='service_name_img' style={{paddingTop: '35vh'}}></img>
               <div className='service_desc'>당신의 몸을 위한<br/>똑똑한 레시피를 Catch up!</div>
             </div>
 
@@ -260,7 +260,7 @@ function App() {
 
             <div className='desctipt_section'>
               <div className='header_text' id='header_title'>
-                <p>어떤 레시피를 궁금한가요?</p>
+                <p>어떤 레시피가 궁금한가요?</p>
               </div>
               <div className='header_text' id='header_desc'>
                 <p>유튜브와 블로그에서 봤던 레시피의 링크를 복사해서 입력해 주세요</p>
