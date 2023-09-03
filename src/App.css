@@ -46,51 +46,91 @@
   width: 20%;
 }
 
-.social_login_btn {
-  background: #F6E10A;
-  margin-top: 30px;
-  color: #000000;
-  /* position: relative; */
-  z-index: 1;
+.service_desc {
+  /* width: 150px; */
+  height: 40px;
+  font-family: 'Pretendard';
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
 }
 
-#kakao_login_btn {
+.service_name_section {
+  background-color: #FF3B30;
+  width: 360px;
+  height: 82vh;
+}
+
+.intro_footer {
+  background-color: #FFFFFF;
+  width: 360px;
+  height: 18vh;
+  border-radius: 20px 20px 0px 0px;
+}
+
+#footer_desc {
+  font-family: 'Pretendard';
+  font-size: 14px;
+  font-weight: 600;
+  color: #8E8E93;
+}
+
+.social_login_btn {
+  background: #FDE500;
+  /* margin-top: 30px; */
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
   height: 52px;
   width: 312px;
   border: none;
   border-radius: 12px;
-  font-size: 18px;
+  /* position: relative; */
+  z-index: 1;
 }
 
-.home_main_title {
-  font-weight: 900;
-  font-size: 24px;
-  font-style: normal;
-  line-height: 150%;
-  color: #282c34;
-  text-align: left;
-  padding: 20px 0px 20px 24px;
+.btn_desc {
+  font-family: 'Pretendard';
+  font-size: 16px;
+}
+
+.home_head {
+
+}
+
+.home_head_img {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 25px 0 25px;
+}
+
+#profile_btn {
+  border: 0;
+  background-color: transparent;
 }
 
 .home_desc_detail {
+  font-family: 'Pretendard';
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   text-align: left;
   padding: 20px 0px 20px 24px;
+  margin-top: 0px;
 }
 
 .body_condition_btn {
   width: 312px;
-  height: 56px;
+  height: 60px;
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
   color: #FFFFFF;
   background-color: #ff3b30;
-  font-size: 18px;
+  font-family: 'Pretendard';
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  margin-top: 160px;
+  margin-top: 90px;
 }
 
 .health_condition {
@@ -100,6 +140,7 @@
 }
 
 .health_condition button {
+  font-family: 'Pretendard';
   margin-top: 10px;
   margin-bottom: 10px;
   width: 312px;
@@ -112,12 +153,77 @@
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-  /* padding: 10px 0 0 10px; */
+  padding: 10px 15px 10px 15px;
 }
 
-.health_condition button p {
+#input_allergie {
+  font-family: 'Pretendard';
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 312px;
+  height: 60px;
+  border-radius: 20px;
+  /* border-width: 1px; */
+  border: none;
+  background-color: #F2F2F7;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#condition_btn {
+  font-family: 'Pretendard';
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 312px;
+  height: 60px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: #FF3B30;
+  background-color: #FF3B30;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 24px;
+  text-align: center;
+  position: fixed;
+  left: 6.5vw;
+  bottom: 15px;
+}
+
+#cond_btn_section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cond_btn_desc {
   font-size: 12px;
-  color: #8e8e93;
-  text-align: right;
-  /* padding: 0 10px 10px 0; */
+  color: #8E8E93;
+}
+
+#test2 {
+  display: inline-block;
+  justify-content: space-between;
+}
+
+#slide_img {
+  display: inherit;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 만듭니다. */
+  z-index: 1000; /* 모달 위에 위치하도록 zIndex를 설정합니다. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-content {
+  transform: translateY(100%); /* 모달을 아래로 숨깁니다. */
+  transition: transform 0.3s ease-in-out; /* 애니메이션 효과 추가 */
+}
+
+.modal-content.modal-open {
+  transform: translateY(0); /* 모달을 위로 이동시킵니다. */
 }
