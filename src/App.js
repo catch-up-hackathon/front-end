@@ -243,8 +243,8 @@ function App() {
         </Route>
 
         {/* 링크 입력 페이지 */}
-        {/* TODO 레시피 보기 누르면 백엔드로 유튜브 링크 보내기 */}
-        {/* TODO 링크 입력하면 정상작동 url인지 체크하기 + 정상이면 썸네일 보이기 */}
+        {/* TODO 레시피 보기 누르면 백엔드로 유튜브 링크 보내기 -- OK */}
+        {/* TODO 링크 입력하면 정상작동 url인지 체크하기 + 정상이면 썸네일 보이기 -- 임시로 항상 정상으로 함 */}
         {/* TODO 레시피 입력시 레시피 보기 버튼 활성화 */}
         <Route path='/url' element={
           <>
@@ -284,23 +284,26 @@ function App() {
           {/* '/recipe' 경로에 도달하면 Bottom Sheet를 엽니다. */}
           <BottomSheet isOpen={isBottomSheetOpen} onClose={() => setIsBottomSheetOpen(false)} />
           {/* 레시피, 재료 헤더 */}
-          <header>
+          <header id='header_title'>
             <div>
               <p>요리 이름</p>
             </div>
           </header>
           
           {/* 재료 영역 */}
-          <div className='ingredients_section' id='ingredients_section'>
+          {/* <div className='ingredients_section' id='ingredients_section'>
             <button>재료 구매</button>
             변경된 재료 뿌려주기
-          </div>
+          </div> */}
 
           {/* 레시피 영역 */}
-          <div className='recipe_section' id='recipe_section'>
+          {/* <div className='recipe_section' id='recipe_section'>
             레시피 리스트 뿌려주기
-          </div>
+          </div> */}
+          <div id='searched_cards_section_detail_page'></div>
+          <CardDetail></CardDetail>
           </>
+
         }>
 
         </Route>
@@ -380,9 +383,9 @@ const BottomSheet = ({ isOpen, onClose }) => {
       contentClassName="modal-content" // 커스텀 스타일 클래스 적용
     >
       {/* Bottom Sheet 내용 */}
-      <header>
+      <header id='header_title'>
         <button onClick={onClose}>닫기</button>
-        <p id='bottom_sheet_header'>(유저이름)님을 위해<br/>케첩이 바꾼 재료들이에요</p>
+        <p id='bottom_sheet_header'>박선우님을 위해<br/>케첩이 바꾼 재료들이에요</p>
       </header>
       <section className='bottom_sheet_content'>
         <div>
@@ -392,98 +395,6 @@ const BottomSheet = ({ isOpen, onClose }) => {
     </Modal>
   );
 };
-
-function request_ingredients_info(place_id, user_id) {
-  axios.post('https://place.o2o.kr/api/v1/card/detail'+'?place_id='+place_id)
-  .then((response)=> {
-    var app_id = 'Apps';
-    console.log(response)
-
-    
-    var test_data =[ 
-    {
-      "status" : true,
-      "data" : {
-        "food_name" : "박선우 손맛 탕수육",
-        "bad" : ['설탕', '식초', '전분'],
-        "good" : ['스테비아', '사과식초', '감자전분'],
-        "ingredients" : ['고기 (등심)', '당근', '오이', '목이버섯', '파인애플', '양파 (선택)', '완두콩 (선택)', '달걀 흰자', '마른 전분', '물', '간장', '스테비아', '사과식초', '물 감자전분'],
-        "recipe" : [
-            '고기를 약간 편으로 썰어줍니다.',
-            '당근을 살짝 잘라서 칼집을 내줍니다.',
-            '오이를 약간 길쭉하게 썰어줍니다.',
-            '파인애플을 4등분 또는 6등분 합니다.',
-            '목이버섯을 크게 잘라줍니다.',
-            '양파와 완두콩은 선택적으로 사용하며, 적당한 크기로 썰어줍니다.',
-            '달걀 흰자를 넣어 튀김옷을 만듭니다.',
-            '마른 전분에 물을 조금씩 섞어가며 튀김옷을 만듭니다.',
-            '고기를 넣고 튀겨줍니다.',
-            '튀긴 고기를 건져서 튀김옷을 제거합니다.',
-            '소스를 만들기 위해 물, 간장, 스테비아, 사과식초, 물 감자전분을 넣고 섞어줍니다.',
-            '튀긴 고기를 소스에 넣고 섞어줍니다.',
-            '접시에 담아 완성합니다.'
-          ]
-        }
-      }]
-    
-    // 데이터 출력
-    var response_data = response.data;
-    var recipe_info = response_data['data'][0]
-    console.log('response_data :', typeof response_data, response_data)
-    
-    // 데이터 파싱
-    let food_name = response_data['food_name']
-    let bad_ingrds = response_data['bad'] // 리스트
-    let good_ingrds = response_data['good'] // 리스트
-    let ingredients = response_data['ingredients'] // 리스트
-    let recipe = response_data['recipe'] // 리스트
-    console.log('response data parse')
-    }
-  )
-}
-
-
-function Ingredients() {
-  var test_data =[ 
-    {
-      "status" : true,
-      "data" : {
-        "food_name" : "박선우 손맛 탕수육",
-        "bad" : ['설탕', '식초', '전분'],
-        "good" : ['스테비아', '사과식초', '감자전분'],
-        "ingredients" : ['고기 (등심)', '당근', '오이', '목이버섯', '파인애플', '양파 (선택)', '완두콩 (선택)', '달걀 흰자', '마른 전분', '물', '간장', '스테비아', '사과식초', '물 감자전분'],
-        "recipe" : [
-            '고기를 약간 편으로 썰어줍니다.',
-            '당근을 살짝 잘라서 칼집을 내줍니다.',
-            '오이를 약간 길쭉하게 썰어줍니다.',
-            '파인애플을 4등분 또는 6등분 합니다.',
-            '목이버섯을 크게 잘라줍니다.',
-            '양파와 완두콩은 선택적으로 사용하며, 적당한 크기로 썰어줍니다.',
-            '달걀 흰자를 넣어 튀김옷을 만듭니다.',
-            '마른 전분에 물을 조금씩 섞어가며 튀김옷을 만듭니다.',
-            '고기를 넣고 튀겨줍니다.',
-            '튀긴 고기를 건져서 튀김옷을 제거합니다.',
-            '소스를 만들기 위해 물, 간장, 스테비아, 사과식초, 물 감자전분을 넣고 섞어줍니다.',
-            '튀긴 고기를 소스에 넣고 섞어줍니다.',
-            '접시에 담아 완성합니다.'
-          ]
-        }
-      }]
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const user_id = urlParams.get('user_id');
-
-  // axios.get('url'+user_id)
-  // .then
-  document.getElementById('ingredients_section').innerHTML+=`
-  <form action="" accept-charset="utf-8" method="get">
-    <button class=>
-      <div>
-      </div>
-    </button>
-  </form>
-  `
-}
 
 // 체크박스용
 const SCustomCheckboxWrapper = styled.div`
@@ -544,3 +455,139 @@ const SCustomLabel = styled.label`
                   }
               `}}
 `;
+
+
+// 재료정보 페이지에서 쓰는 함수
+function CardDetail(){
+  // url parameter 추출
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const placeId = urlParams.get('place_id');
+  // const user_id = urlParams.get('user_id');
+  // console.log('urlParams : ', urlParams);
+  // console.log('placeId : ', placeId);
+
+  request_card_info_detail()
+  // var ret = request_card_info_detail(placeId)
+  // console.log('ret : ', ret);
+}
+
+// 카드 상세 정보 받는 함수
+function request_card_info_detail(){
+  // send parameter to backend
+  // axios.get('https://place.o2o.kr/api/v1/card/detail'+"?place_id="+placeId)
+  
+  // .then((response)=>{
+  var test_data = {
+    'status': true,
+    'data' : [{
+      "food_name" : "박선우 손맛 탕수육",
+      "bad" : ['설탕', '식초', '전분'],
+      "good" : ['스테비아', '사과식초', '감자전분'],
+      "ingredients" : ['고기 (등심)', '당근', '오이', '목이버섯', '파인애플', '양파 (선택)', '완두콩 (선택)', '달걀 흰자', '마른 전분', '물', '간장', '스테비아', '사과식초', '물 감자전분'],
+      "recipe" : [
+          '고기를 약간 편으로 썰어줍니다.',
+          '당근을 살짝 잘라서 칼집을 내줍니다.',
+          '오이를 약간 길쭉하게 썰어줍니다.',
+          '파인애플을 4등분 또는 6등분 합니다.',
+          '목이버섯을 크게 잘라줍니다.',
+          '양파와 완두콩은 선택적으로 사용하며, 적당한 크기로 썰어줍니다.',
+          '달걀 흰자를 넣어 튀김옷을 만듭니다.',
+          '마른 전분에 물을 조금씩 섞어가며 튀김옷을 만듭니다.',
+          '고기를 넣고 튀겨줍니다.',
+          '튀긴 고기를 건져서 튀김옷을 제거합니다.',
+          '소스를 만들기 위해 물, 간장, 스테비아, 사과식초, 물 감자전분을 넣고 섞어줍니다.',
+          '튀긴 고기를 소스에 넣고 섞어줍니다.',
+          '접시에 담아 완성합니다.'
+        ]
+      }
+    ]
+  }
+
+    // var app_id = 'Apps';
+    // document.getElementById(app_id).innerHTML+=`<div class="ingredients_recipe_section" id="ingredients_recipe_section_detail_page"></div>`;
+    
+    // 데이터 출력
+    // var response_data = response.data;
+    // var place_data = response_data['data'][0];
+    // console.log('response_data : ', typeof response_data, response_data)
+    // console.log('place_data : ', typeof place_data, place_data)
+    // console.log('response : ', response);
+
+    // response data parse
+    var food_data = test_data['data'][0]
+
+    // 요리정보
+    let health_status = '새우 알레르기'
+    let food_name = food_data['food_name']
+    let bad_ingrdt = food_data['bad']
+    let good_ingrdt = food_data['good']
+    let ingredients = food_data['ingredients']
+    let recipe = food_data['recipe']
+
+    console.log('response data parse');
+
+    // apply response data to html code
+    var app_id = 'searched_cards_section_detail_page';
+    document.getElementById(app_id).innerHTML+=`
+
+        <div class="each_data_container">
+          <div class="">${health_status}가 있는 사람들을 위한</div>
+          <div class="data_spot_info"><p>${food_name}</p></div>
+          
+        </div>
+        <div class="buffer_bottom"></div>
+
+        <div class="each_data_container">
+          <p class="sub_heading">재료</p>
+          <p class="sub_heading_desc">1인분 기준</p>
+          <div class="data_ingredient">${ingredients[0]}</div>
+          <div class="data_ingredient">${ingredients[1]}</div>
+          <div class="data_ingredient">${ingredients[2]}</div>
+          <div class="data_ingredient">${ingredients[3]}</div>
+          <div class="data_ingredient">${ingredients[4]}</div>
+          <div class="data_ingredient">${ingredients[5]}</div>
+          <div class="data_ingredient">${ingredients[6]}</div>
+          <div class="data_ingredient">${ingredients[7]}</div>
+          <div class="data_ingredient">${ingredients[8]}</div>
+          <div class="data_ingredient">${ingredients[9]}</div>
+          <div class="data_ingredient">${ingredients[10]}</div>
+          <div class="data_ingredient">${ingredients[11]}</div>
+          <div class="data_ingredient">${ingredients[12]}</div>
+          <div class="data_ingredient">${ingredients[13]}</div>
+        </div>
+        <div class="buffer_bottom"></div>
+        
+        <div class="each_data_container">
+          <p class="sub_heading">레시피</p>
+          <div class="data_spot_info_detail">
+            <div class="each_detail_data" id="each_detail_data">
+              <div class="data_recipe">${recipe[0]}</div>
+              <div class="data_recipe">${recipe[1]}</div>
+              <div class="data_recipe">${recipe[2]}</div>
+              <div class="data_recipe">${recipe[3]}</div>
+              <div class="data_recipe">${recipe[4]}</div>
+              <div class="data_recipe">${recipe[5]}</div>
+              <div class="data_recipe">${recipe[6]}</div>
+              <div class="data_recipe">${recipe[7]}</div>
+              <div class="data_recipe">${recipe[8]}</div>
+              <div class="data_recipe">${recipe[9]}</div>
+              <div class="data_recipe">${recipe[10]}</div>
+              <div class="data_recipe">${recipe[11]}</div>
+              <div class="data_recipe">${recipe[12]}</div>
+            </div>
+          </div>
+        </div>
+    `;
+
+    console.log('apply response data to html code');
+    // 개별 카드 데이터 return
+    // console.log('개별 카드 데이터 return', place_data[0]);
+    // single_card_frame(place_data[0], placeId)
+
+    // return place_data[0]
+
+    // 예외처리
+  // .catch(()=>{
+  //   console.log('false')
+  // })
+}

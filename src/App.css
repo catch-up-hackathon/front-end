@@ -260,3 +260,9 @@
 .modal-content.modal-open {
   transform: translateY(0); /* 모달을 위로 이동시킵니다. */
 }
+
+.thumbnail_section {
+  min-width: 312px;
+  min-height: 312px;
+  object-fit: cover;
+}
