@@ -46,6 +46,11 @@
   width: 20%;
 }
 
+.service_name_img {
+  display: block;
+  margin: auto;
+}
+
 .service_desc {
   /* width: 150px; */
   height: 40px;
@@ -59,6 +64,7 @@
   background-color: #FF3B30;
   width: 360px;
   height: 82vh;
+  overflow-x: auto;
 }
 
 .intro_footer {
@@ -109,6 +115,31 @@
   background-color: transparent;
 }
 
+#pre_page_btn {
+  border: 0;
+  background-color: transparent;
+  padding: 25px 0 0 25px;
+  display: block;
+}
+
+#header_title {
+  font-family: 'Pretendard';
+  font-size: 28px;
+  font-weight: 600;
+  text-align: left;
+  padding-left: 25px;
+}
+
+#header_desc {
+  padding-left: 25px;
+  padding-right: 25px;
+  text-align: left;
+}
+
+#header_form_btn {
+  height: 80px;
+}
+
 .home_desc_detail {
   font-family: 'Pretendard';
   font-weight: 600;
@@ -156,7 +187,7 @@
   padding: 10px 15px 10px 15px;
 }
 
-#input_allergie {
+#input_text {
   font-family: 'Pretendard';
   margin-top: 10px;
   margin-bottom: 10px;
@@ -170,7 +201,7 @@
   font-weight: 600;
 }
 
-#condition_btn {
+.show_recipe_btn {
   font-family: 'Pretendard';
   margin-top: 10px;
   margin-bottom: 10px;
@@ -185,8 +216,8 @@
   color: #FFFFFF;
   line-height: 24px;
   text-align: center;
-  position: fixed;
-  left: 6.5vw;
+  /* position: fixed; */
+  /* left: 6.5vw; */
   bottom: 15px;
 }
 

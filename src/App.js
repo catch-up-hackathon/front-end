@@ -12,6 +12,24 @@ import styled, { css } from "styled-components";
 
 
 function App() {
+
+
+  // const [prePathValue, setPrePathValue] = useState('');
+  // const prePage = (prePathValue) => {
+  //   console.log('이동할 곳 :', prePathValue)
+  //   window.location.href = `${prePathValue}`;
+  // }
+
+
+  const [userId, setUserId] = useState(''); // 초기 user_id 값을 빈 문자열로 설정
+  const handleSubmit = (e) => {
+    e.preventDefault(); // 기본 폼 서브밋 방지
+    // 여기서 userId를 사용하여 필요한 작업을 수행하거나, 서버로 전송할 수 있습니다.
+    console.log('user_id:', userId);
+    // 이후 서버로 데이터를 보내는 코드를 추가하세요.
+    window.location.href = `/main?user_id=${userId}`;
+  };
+
   // 알러지 정보 추가 입력을 위한 변수 선언
   const [showInput, setShowInput] = useState(false); // 알레르기 버튼 클릭 시 input태그 상태
   // 알레르기 버튼 클릭 후 input태그 활성화
@@ -69,38 +87,43 @@ function App() {
         <Route path='/' element={
           <>
           <div className='wrap_home'>
-            <main id='main' style={{}}>
-              {/* 헤더(서비스명 표기)
-              <header className='home_head' id='home_head_login'>
-                <p className='home_main_title'></p>
-              </header> */}
+            {/* 헤더(서비스명 표기)
+            <header className='home_head' id='home_head_login'>
+              <p className='home_main_title'></p>
+            </header> */}
 
-              {/* 서비스명 영역 */}
-              <section className='service_name_section'>
-                {/* <img className='' src='' alt='service_name_img'></img> */}
-                <img src='/image/intro_name.svg' alt='service_name_img'></img>
-                <div className='service_desc'>당신의 몸을 위한<br/>똑똑한 레시피를 Catch up!</div>
-              </section>
+            {/* 서비스명 영역 */}
+            <div className='service_name_section'>
+              {/* <img className='' src='' alt='service_name_img'></img> */}
+              <img id='service_name_img' src='/image/intro_name.svg' alt='service_name_img'></img>
+              <div className='service_desc'>당신의 몸을 위한<br/>똑똑한 레시피를 Catch up!</div>
+            </div>
 
-              {/* 서비스 아이콘 이미지
+            {/* 서비스 아이콘 이미지
+            <div>
+              <img className='login_img_box' src={"https://cdn-icons-png.flaticon.com/512/5370/5370584.png"} alt='service_icon_img'></img>
+            </div> */}
+
+            {/* 소셜 로그인 영역 */}
+            <div className='intro_footer'>
+              <div id='footer_desc'>소셜 로그인</div>
               <div>
-                <img className='login_img_box' src={"https://cdn-icons-png.flaticon.com/512/5370/5370584.png"} alt='service_icon_img'></img>
-              </div> */}
-
-              {/* 소셜 로그인 영역 */}
-              <div className='intro_footer'>
-                <div id='footer_desc'>소셜 로그인</div>
-                <div>
-                  <button className='social_login_btn' id='kakao_login_btn' onClick={KakaoLogIn}>
+                
+                <form action='/' acceptCharset='utf-8' method='get' onSubmit={handleSubmit}>
+                  <button className='social_login_btn' id='kakao_login_btn' onClick={() => setUserId('admin')}>
                     <div className='btn_desc'>카카오톡으로 시작하기</div>
                   </button>
-                </div>
+                </form>
+                {/* <button className='social_login_btn' id='kakao_login_btn' onClick={KakaoLogIn}>
+                  <div className='btn_desc'>카카오톡으로 시작하기</div>
+                </button> */}
               </div>
-            </main>
+            </div>
           </div>
           </>
         }/>
         
+        {/* 튜토리얼 보여주는 메인페이지 */}
         <Route path='/main' element={
           <>
           <div className='wrap_home'>
@@ -138,6 +161,14 @@ function App() {
           </>
         }>
         </Route>
+
+        {/* 사용자 페이지 */}
+        <Route path='/profile' element={
+          <>
+          <div></div>
+          </>
+        }>
+        </Route>
         
         {/* 건강상태 페이지 */}
         {/* TODO 백엔드로 건강상태 데이터 보내야함, 알레르기 입력 후 완료버튼 활성화 */}
@@ -147,7 +178,11 @@ function App() {
           <header>
             {/* 이전 페이지 버튼 */}
             <div className='pre_page' id='pre_page'>
-
+              <form id='header_form_btn' action='/main' acceptCharset='utf-8' method='get'>
+                <button id='pre_page_btn'>
+                  <img src='./image/pre_page_btn.svg' alt='pre_page_btn'></img>
+                </button>
+              </form>
             </div>
           </header>
 
@@ -160,7 +195,7 @@ function App() {
                   <p>어떤 알레르기가 있나요?</p>
                 </div>
               }
-              {showInput && <input id='input_allergie' type='text' value={InputValue} onChange={saveInputValue} placeholder='알레르기를 입력해 주세요' />}
+              {showInput && <input id='input_text' type='text' value={InputValue} onChange={saveInputValue} placeholder='알레르기를 입력해 주세요' />}
             </div>
           </section>
             <div className='desctipt_section'>
@@ -198,7 +233,10 @@ function App() {
               </div>
             </button>
           </section>
-          <button id='condition_btn'>완료</button>
+          <form action='/url' acceptCharset='utf-8' method='get'>
+            {/* <button className='condition_btn'>완료</button> */}
+            <button className='show_recipe_btn'>완료</button>
+          </form>
           </>
         }
         >
@@ -213,7 +251,11 @@ function App() {
           <header>
             {/* 이전 페이지 버튼 */}
             <div className='pre_page' id='pre_page'>
-
+              <form id='header_form_btn' action='/condition' acceptCharset='utf-8' method='get'>
+                <button id='pre_page_btn'>
+                  <img src='./image/pre_page_btn.svg' alt='pre_page_btn'></img>
+                </button>
+              </form>
             </div>
 
             <div className='desctipt_section'>
@@ -230,7 +272,7 @@ function App() {
               {/* <input type='text' placeholder='레시피 링크를 입력해 주세요' onFocus="this.placeholder = ''" /> */}
               <URLValidator />
             </div>
-            <button>레시피 보기</button>
+            <button className='show_recipe_btn'>레시피 보기</button>
           </section>
           </>
         }>
